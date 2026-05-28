@@ -1,0 +1,19 @@
+---
+---
+
+$base-font-family: serif;
+$brand-color: rgb(50, 23, 200);
+
+@import "{{ site.theme }}";
+
+.wrapper {
+    max-width: 40em;
+    margin: auto;
+}
+
+blockquote {
+    font-size: inherit;
+    letter-spacing: 0;
+    font-style: normal;
+    color: #555;
+}
