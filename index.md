@@ -6,7 +6,7 @@ layout: home
 list_title: Challenges
 ---
 
-Welcome to the local mixing challenge! We will post new challenges occasionally. Join the discussion on [our email list](#) or open an [issue on our Github](https://github.com/Local-Mixing/local_mixing/issues).
+Welcome to the local mixing challenge! We will post new challenges occasionally. Join the discussion on [our email list](https://groups.google.com/g/local-mixing-public) or open an [issue on our Github](https://github.com/Local-Mixing/local_mixing/issues).
 
 New to local mixing? Check out the [how-to](/howto) page. More information about the project is on the [about page](/about).
 
