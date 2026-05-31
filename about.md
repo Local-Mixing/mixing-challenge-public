@@ -11,7 +11,7 @@ Local mixing is brought to you alphabetically by:
 - [Eli Baum](https://elibaum.com/) (Boston University)
 - [Prof. Ran Canetti](https://www.bu.edu/cs/profiles/ran-canetti/) (Boston University)
 - [Prof. Claudio Chamon](https://quantum.research.purdue.edu/directory/claudio-chamon/) (Purdue)
-- Nicholas Ho (Phantom Zone -> Independent)
+- Nicholas Ho (Phantom Zone → Independent)
 - [Janmajaya Mall](https://phantom.zone/) (Phantom Zone)
 - [Prof. Eduardo Mucciolo](https://sciences.ucf.edu/physics/mucciolo/) (University of Central Florida)
 - [Prof. Andrei Ruckenstein](https://www.bu.edu/physics/profile/andrei-ruckenstein/) (Boston University)
