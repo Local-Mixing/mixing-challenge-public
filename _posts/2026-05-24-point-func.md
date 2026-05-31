@@ -3,6 +3,7 @@ layout: post
 title:  "2: Obfuscated Point Function"
 date:   2026-05-24
 ---
+
 {% include math.html %}
 
 
