@@ -13,7 +13,6 @@ New to local mixing? Check out the [how-to](/howto) page. More information about
 # TODO
 - licensing
 - GH enterprise private link
-- Google group mailing list
 - Id ckt that looks like point function
 
 new line 

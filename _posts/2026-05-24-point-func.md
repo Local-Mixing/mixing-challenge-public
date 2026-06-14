@@ -19,11 +19,32 @@ $$
 When viewed as a permutation, $$f(\cdot)$$ comprises the single transposition $$(a\ b)$$.
 
 Since reversible circuits can only compute _even_ permutations, it's not possible, strictly speaking, to encode a point function. Instead, we need an _ancilla_ wire, an extra wire which is effectively used as a temporary register. Inputs on ancilla wires do not effect the computation, and the outputs on those wires (generally) remain unchanged. Then, for some secret key $$k$$, we can build a circuit computing the permutation:
+
 $$
 (00\|k\ 01\|k)(10\|k\ 11\|k)
 $$
 
-where $$\cdot\|\cdot$$ represents bitstring concatenation. In this circuit, the ancilla is the MSB, and the active wire the second bit. As a concrete example, if we take $$k=100\in\mathbb F_2^8$$, our point function circuit would compute
+where $$\cdot\|\cdot$$ represents bitstring concatenation. In this circuit, the ancilla is the MSB, and the active wire the second bit. Note that for these circuits, _four_ inputs do not map to themselves.
+
+## The Plaintext Construction
+
+One straightforward way to construct a circuit for $$f_{a,b}(x)$$ is to set $$b=a+2^{\lambda+1}$$: this way, we flip a single high-order bit when the lower-order bits match a secret key. The high-level approach is to XOR the input with the key, check if the lower wires are all zero, and XOR in the key again. Let $$z(x) := (x \overset ? = 0)$$ be the zero-check function. We compute
+
+$$
+f_{k,k+2^{\lambda+1}}(x)=z(x \oplus k) \| x
+$$
+
+Schematically:
+
+![Point function construction](/assets/img/pf-constr.png){: width="50%"}
+
+**TODO:** update this circuit to match the notation described above.
+
+We implement $$z(x)$$ with a multi-control Toffoli gate. Such a gate flips its active pin only when all of its control pins are 1. We use the multi-control Toffoli construction of Barenco et al.[^1] to decompose this gate into two-input gates. Specifically, Section 7.1 gives a construction for a $$\lambda$$-control Toffoli in $$8(\lambda - 3)$$ two-control Toffoli gates. Next, we decompose each Toffoli into four copies of gate 57. Each of the $$\boxed{\oplus\neg k}$$ blocks can be represented with at most $$6\lambda$$ gates, so the final construction has $$44\lambda-96$$ gates.
+
+[^1]: Barenco, Adriano, et al. "Elementary gates for quantum computation." _Physical review A_ 52.5 (1995): 3457. [arXiv](https://arxiv.org/abs/quant-ph/9503016v1)
+
+As a concrete example, if we take $$k=100\in\mathbb F_2^8$$, our point function circuit would compute
 $$
 (100\ 356)(612\ 868)
 $$. Here is such a ten-wire circuit:
@@ -77,7 +98,7 @@ To generate your own point functions, see the file `point_function.rs`.
 
 ## The challenge
 
-The obfuscated point function below computes the cycle $$({*}0\|k\ \ {*}1\|k)$$. Find $$k$$. (The circuit has 128 wires, so you probably won't have enough time to brute-force all possible inputs.)
+The obfuscated point function below computes the cycle $$({*}0\|k\ \ {*}1\|k)$$, for $$k\in\mathbb F_2^{128}$$. Find $$k$$. (The circuit has 132 wires, so you probably won't have enough time to brute-force all possible inputs.)
 
 ```
 # TODO
