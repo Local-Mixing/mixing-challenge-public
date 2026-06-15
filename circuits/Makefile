@@ -2,7 +2,7 @@ CIRCDIR  := ./
 OUTDIR   := ../out
 IMGDIR   := ../assets/img/ckt
 
-$(OUTDIR)/%.svg: $(CIRCDIR)/%.tex | $(OUTDIR)
+$(OUTDIR)/%.png: $(CIRCDIR)/%.tex | $(OUTDIR)
 	latexmk -f -pdf -output-directory=$(OUTDIR) $
 	pdfcrop $(OUTDIR)/$*.pdf $(OUTDIR)/$*.pdf
 	pdftoppm -r 600 -png -singlefile $(OUTDIR)/$*.pdf $(IMGDIR)/$*
@@ -12,4 +12,4 @@ $(OUTDIR):
 	mkdir -p $(OUTDIR)
 
 .PHONY: $(MAKECMDGOALS)
-$(MAKECMDGOALS): $(OUTDIR)/$(MAKECMDGOALS).svg
+$(MAKECMDGOALS): $(OUTDIR)/$(MAKECMDGOALS).png
