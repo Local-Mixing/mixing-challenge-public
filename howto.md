@@ -6,7 +6,43 @@ permalink: /howto
 
 {% include math.html %}
 
-This page will describe how obfuscation works.
+This page will describe how our proposed obfuscation scheme works.
+
+## Crash Course on Indistinguishability Obfuscation
+
+Our goal is to construct indistinguishability obfuscation (iO) for circuits, by way of _reversible_ circuits (defined next). In this section, we briefly touch on the definition and properties of iO. For a more formal treatment, see [SW14] [JLS21].
+
+An indistinguishability obfuscator $$\mathcal O(\cdot)$$ is a randomized algorithm which takes a program (or, here, a circuit) as input, and outputs a functionally-equivalent obfuscated circuit. The salient property is that the obfuscations of two equivalent programs are indistinguishable:
+
+$$
+C_1\equiv C_2 \implies \mathcal O(C_1) \approx \mathcal O(C_2)
+$$
+
+where $$\equiv$$ means "functional equivalence" ($$\forall x:C_1(x)=C_2(x)$$) and $$\approx$$ means "(computationally) indistinguishable." As a side effect, note that $$C_1 \equiv \mathcal O(C_1)$$, so $$\mathcal O(\mathcal O(C_1))\approx \mathcal O(C_1)$$.
+
+**iO is not black-box obfuscation.** The pipe dream of obfuscation would be something known as "virtual black-box obfuscation," which has been proven impossible. [cite] VBB would require...
+
+However, this doesn't mean we can't do interesting stuff with iO.
+
+For example, we know that for some pseudorandom function $$F$$, $$F(k_1, \cdot)\approx F(k_2, \cdot)$$ for two distinct keys $$k_1, k_2$$ (tighten up, on different inputs, distributionally, etc.). By the security property of iO,
+
+$$
+\mathcal O(F(k_1, \cdot)) \equiv F(k_1, \cdot) \approx F(k_2, \cdot) \equiv \mathcal O(F(k_2, \cdot))
+$$
+
+so we cannot tell which key has been "embedded" into the obfuscated program. Thus we can do neat things like build public-key encryption out of symmetric key cryptography:
+
+$$
+\begin{align}
+k&\overset $ \gets \{0,1\}^\lambda\\
+\mathsf{sk}&:=k\\
+\mathsf{pk}&\gets \mathcal O(\mathrm{AES}(k, \cdot))\\
+\mathsf{Enc}(\mathsf{pk}, m)&:=\left(r\overset $ \gets \{0,1\}^\lambda,\mathsf{pk}(m\oplus r) \equiv \mathrm{AES}(k, m\oplus r)\right)\\
+\mathsf{Dec}(\mathsf{sk}, (r, c))&:=\mathrm{AES}(k, c)\oplus r
+\end{align}
+$$
+
+(or choose your favorite block cipher mode of operation.) It is safe to publish $$\mathsf{pk}$$ here because iO guarantees that all such public keys are indistinguishable from each other.
 
 ## Crash Course on Reversible Circuits
 
@@ -58,6 +94,10 @@ where $$r:\{0,1\}^n\mapsto\{0,1\}^{n-1}$$ is the arbitrary function computed by 
 Intuitively, we might expect this to reach a stationary distribution after sufficiently many iterations. The interesting questions are how many iterations are needed, exactly how we sample subcircuits, and how we pick replacements. We also care about the blowup of the scheme: if, in expectation, $$\|s'\|/\|s\|=1+\varepsilon$$, then after $$k$$ rounds our circuit will have size $$\|C\|\cdot (1+\varepsilon)^k$$, which might grow with $$O(2^n)$$!
 
 ### Perfect Compressors give Perfect Obfuscators
+
+## From Reversible Circuits to All Circuits
+
+CCMR appendix
 
 
 ## Next Steps

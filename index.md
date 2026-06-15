@@ -10,6 +10,14 @@ Welcome to the local mixing challenge! We will post new challenges occasionally.
 
 New to local mixing? Check out the [how-to](/howto) page. More information about the project is on the [about page](/about).
 
+Submit your solutions to `challenges at randomcircuits dot io` with a subject line in the following format. Unless otherwise specified, solutions should be written in little-endian hexadecimal.
+
+```
+Challenge #: 0x5819bae...
+```
+
+There is currently no reward for any challenges.
+
 # TODO
 - licensing
 - GH enterprise private link
