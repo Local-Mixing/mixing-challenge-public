@@ -70,7 +70,36 @@ All S8, Boolean Control Funcs, CNT, Gate 57
 
 Cite Salo. Show 3-wire and ancilla constructions for all boolean control functions.
 
-We have confirmed that all permutations $$\pi\in S_8$$ can be computed in $$\leq10$$ gates when restricted to gate 57. In general, however, exponentially many gates are required.
+This gate computes the NIMPLY control function; on wires $$(a, c^+, c^-)$$, that is:
+
+$$
+\begin{align}
+a&\to a\oplus(c^+ \vee \neg\,c^-) \\
+ &= a \oplus (\neg\,c^+ \wedge c^-) \oplus 1\\
+ &= a \oplus c^+c^- \oplus c^- \oplus 1
+\end{align}
+$$
+
+The gate flips its active pin when $$c^+=1$$ and $$c^-=0$$.
+
+
+We also refer to this gate as "rule 57" beacuse it can also be viewed as that numbered elementary cellular automata (under [Wolfram's taxonomy](https://atlas.wolfram.com/01/01/57/)). Elsewhere, we will refer to this gate as `r57`.
+
+By exhaustive search, we have confirmed that all $$8!=40320$$ permutations $$S_8$$ can be computed in at most ten gates when restricted to gate `r57`. In general, however, exponentially many gates are required. This can be seen by a simple counting argument:
+
+Over $$n$$ wires, there are $$(2^n)!/2=\vert\mathbb A_{2^n}\vert$$ even permutations. With gate `r57`, there are about $$n^{3m}$$ circuits with $$n$$ wires and $$m$$ gates. Thus, we need at exponentially many gates:
+
+$$
+\begin{align}
+n^{3m} &\geq (2^n)! / 2 \\
+3m\log n & \gtrsim \frac{2^n \log 2^n}2\qquad \text{by Stirling}\\
+m & \geq \frac{n\cdot 2^n}{6\log n}
+\end{align}
+$$
+
+Zakablukov[^zak] provided a constructive proof that at most $$(1+o(1))\cdot 48n2^n / \log n$$ gates are required; thus, most permutations require $$\Theta(n\cdot 2^n / \log n)$$ gates.
+
+[^zak]: Zak 2016. Note that their result applies to the "CNT" gate set (CNOT, NOT, Toffoli), but we can simulate this gate set with `r57` with a multiplicative blowup of at most six, and in practice probably closer to two.
 
 ### Computing functions which are not bijections
 
@@ -93,6 +122,12 @@ where $$r:\{0,1\}^n\mapsto\{0,1\}^{n-1}$$ is the arbitrary function computed by 
 
 Intuitively, we might expect this to reach a stationary distribution after sufficiently many iterations. The interesting questions are how many iterations are needed, exactly how we sample subcircuits, and how we pick replacements. We also care about the blowup of the scheme: if, in expectation, $$\|s'\|/\|s\|=1+\varepsilon$$, then after $$k$$ rounds our circuit will have size $$\|C\|\cdot (1+\varepsilon)^k$$, which might grow with $$O(2^n)$$!
 
+**Notation.** In the challenges, we will represent gates as a string of three alphanumeric characters. These represent the active, positive control (??), and negative control, respectively. For example, this circuit
+
+![example circuit](/assets/img/ckt/small-example.png){: width="20%"}
+
+is compactly represented by the string `301;032;102`. We label the wires $$0$$ (top) to $$n-1$$ (bottom).
+
 ### Perfect Compressors give Perfect Obfuscators
 
 ## From Reversible Circuits to All Circuits
@@ -104,4 +139,8 @@ CCMR appendix
 
 Try out one of the [challenges](/).
 
-Browse Our github repository at [Local-Mixing/local_mixing](https://github.com/Local-Mixing/local_mixing).
+Browse our github repository at [Local-Mixing/local_mixing](https://github.com/Local-Mixing/local_mixing).
+
+---
+
+_Footnotes_

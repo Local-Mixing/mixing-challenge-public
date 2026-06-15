@@ -1,0 +1,13 @@
+\documentclass[tikz, border=5pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{quantikz2} 
+
+\begin{document}
+
+\begin{quantikz}
+    & \ctrl{3}  & \targ{}    & \ctrl{1}   & \\
+    & \octrl{2} &            & \targ{}    & \\
+    &           & \octrl{-2} & \octrl{-1} & \\
+    & \targ{}   & \ctrl{-1}  &            &
+\end{quantikz}
+\end{document}

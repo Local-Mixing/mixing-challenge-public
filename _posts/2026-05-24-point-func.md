@@ -40,7 +40,7 @@ Schematically:
 
 **TODO:** update this circuit to match the notation described above.
 
-We implement $$z(x)$$ with a multi-control Toffoli gate. Such a gate flips its active pin only when all of its control pins are 1. We use the multi-control Toffoli construction of Barenco et al.[^1] to decompose this gate into two-input gates. Specifically, Section 7.1 gives a construction for a $$\lambda$$-control Toffoli in $$8(\lambda - 3)$$ two-control Toffoli gates. Next, we decompose each Toffoli into four copies of gate 57. Each of the $$\boxed{\oplus\neg k}$$ blocks can be represented with at most $$6\lambda$$ gates, so the final construction has $$44\lambda-96$$ gates.
+We implement $$z(x)$$ with a multi-control Toffoli gate. Such a gate flips its active pin only when all of its control pins are 1. We use the multi-control Toffoli construction of Barenco et al.[^1] to decompose this gate into two-input gates. Specifically, Section 7.1 gives a construction for a $$\lambda$$-control Toffoli in $$8(\lambda - 3)$$ two-control Toffoli gates. Next, we decompose each Toffoli into four copies of `r57`. Each of the $$\boxed{\oplus\neg k}$$ blocks can be represented with at most $$6\lambda$$ gates, so the final construction has $$44\lambda-96$$ gates.
 
 [^1]: Barenco, Adriano, et al. "Elementary gates for quantum computation." _Physical review A_ 52.5 (1995): 3457. [arXiv](https://arxiv.org/abs/quant-ph/9503016v1)
 
