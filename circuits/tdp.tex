@@ -7,7 +7,7 @@
 \begin{document}
 
 \begin{quantikz}
-    \lstick[4]{$x\in\{0,1\}^{n+k}$} && \gate[4]{F} & && \qwbundle{k} && \gate[4]{G} &  \rstick[4]{$r\in\{0,1\}^{n+k}$} \\
+    \lstick[4]{$x\in\{0,1\}^{n+1}$} && \gate[4]{F} & &&&& \gate[4]{G} &  \rstick[4]{$r\in\{0,1\}^{n+1}$} \\
     &&&  \ctrl{3} \setwiretype{q}  &&&&        & \\
     &&\wire[r][5][dotted]{q}&\setwiretype{n}  & \phase{} &&&&\wireoverride{q}  \\
     &&&\setwiretype{q} && \ctrl{3} &&& \\

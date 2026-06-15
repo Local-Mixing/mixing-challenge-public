@@ -52,7 +52,9 @@ A _reversible circuit_ $$C$$ computes a bijective function over a fixed number o
 
 The reversible gates that we consider are [their own inverse](https://en.wikipedia.org/wiki/Involution_(mathematics)), so for any gate $$g$$, we have that $$gg=1$$, the identity circuit. (This shows that $$CC^{-1}=1$$, as well.) We will sometimes write $$1_n$$ to explicitly represent the identity circuit over $$n$$ wires.
 
-Since the permutation group is nonabelian, gates do not commute in general.
+However, since the permutation group is nonabelian, gates do not commute in general.
+
+![don't commute](/assets/img/ckt/no-commute.png){: width="60%"}
 
 At first glance, we might expect that the set of reversible circuits on $$n$$ wires, $$\mathcal C_n$$, computes all of the $$n$$-bit permutations, $$\mathbb S_{2^n}$$. However, in the general case, reversible circuits only compute the _even_ permutations, $$\mathbb A_{2^n}$$.[^1] These are the permutations with an even number of transpositions.
 
@@ -103,13 +105,15 @@ Zakablukov[^zak] provided a constructive proof that at most $$(1+o(1))\cdot 48n2
 
 ### Computing functions which are not bijections
 
-We can embed non-bijective functions in a reversible circuit by only considering a subset of the bits. Say we want to construct a circuit for some function $$f:\{0,1\}^n\mapsto \{0,1\}$$. We will implement:
+We can embed non-bijective functions in a reversible circuit by only considering a subset of the output bits. Say we want to construct a circuit for some function $$f:\{0,1\}^n\mapsto \{0,1\}$$. We will implement:
 
 $$
 C(x) = (f(x) \mid\mid r(x))
 $$
 
 where $$r:\{0,1\}^n\mapsto\{0,1\}^{n-1}$$ is the arbitrary function computed by the inner machinery of the circuit. $$(\cdot \mid\mid \cdot)$$ represents concatenation. Observe that reversibility requires that $$C^{-1}(f(x)\mid\mid r(x)) = x$$.
+
+Some functions require ancilla bits during computation. So while $$f$$ 
 
 ## Our Approach to Obfuscation
 
@@ -124,7 +128,7 @@ Intuitively, we might expect this to reach a stationary distribution after suffi
 
 **Notation.** In the challenges, we will represent gates as a string of three alphanumeric characters. These represent the active, positive control (??), and negative control, respectively. For example, this circuit
 
-![example circuit](/assets/img/ckt/small-example.png){: width="20%"}
+![example circuit](/assets/img/ckt/small-example.png){: width="25%"}
 
 is compactly represented by the string `301;032;102`. We label the wires $$0$$ (top) to $$n-1$$ (bottom).
 

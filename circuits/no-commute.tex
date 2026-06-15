@@ -1,0 +1,18 @@
+\documentclass[tikz, border=5pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{quantikz2} 
+
+\begin{document}
+
+\newcommand{\mt}{\wireoverride{n}}
+
+\begin{quantikz}
+  & \ctrl{1}  & \targ{}    & \qw & \mt      & \mt & \targ{}   & \ctrl{1}  & \qw \\
+  & \octrl{1} & \ctrl{1}   & \qw & \mt \neq & \mt & \ctrl{1}  & \octrl{1} & \qw \\
+  & \targ{}   & \octrl{-2} & \qw & \mt      & \mt & \octrl{-2} & \targ{}   & \qw \\
+  \\
+  \setwiretype{n} &
+  \gategroup[1, steps=2,style={draw=none,anchor=north}]{$(0\ 4\ 1\ 5)(2\ 3\ 6\ 7)$} & & & & &
+  \gategroup[1, steps=2,style={draw=none,anchor=north}]{$(0\ 5\ 1\ 4)(2\ 7\ 6\ 3)$} & &
+\end{quantikz}
+\end{document}
