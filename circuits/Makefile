@@ -4,6 +4,7 @@ IMGDIR   := ../assets/img/ckt
 
 $(OUTDIR)/%.svg: $(CIRCDIR)/%.tex | $(OUTDIR)
 	latexmk -f -pdf -output-directory=$(OUTDIR) $
+	pdfcrop $(OUTDIR)/$*.pdf $(OUTDIR)/$*.pdf
 	pdftoppm -r 600 -png -singlefile $(OUTDIR)/$*.pdf $(IMGDIR)/$*
 	latexmk -C -output-directory=$(OUTDIR) $
 

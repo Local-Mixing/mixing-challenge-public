@@ -54,7 +54,7 @@ The reversible gates that we consider are [their own inverse](https://en.wikiped
 
 However, since the permutation group is nonabelian, gates do not commute in general.
 
-![don't commute](/assets/img/ckt/no-commute.png){: width="60%"}
+![don't commute](/assets/img/ckt/no-commute.png){: width="50%"}
 
 At first glance, we might expect that the set of reversible circuits on $$n$$ wires, $$\mathcal C_n$$, computes all of the $$n$$-bit permutations, $$\mathbb S_{2^n}$$. However, in the general case, reversible circuits only compute the _even_ permutations, $$\mathbb A_{2^n}$$.[^1] These are the permutations with an even number of transpositions.
 
