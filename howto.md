@@ -8,7 +8,7 @@ permalink: /howto
 
 This page will describe how our proposed obfuscation scheme works.
 
-## Crash Course on Indistinguishability Obfuscation
+## Crash   Course on Indistinguishability Obfuscation
 
 Our goal is to construct indistinguishability obfuscation (iO) for circuits, by way of _reversible_ circuits (defined next). In this section, we briefly touch on the definition and properties of iO. For a more formal treatment, see [SW14] [JLS21].
 
