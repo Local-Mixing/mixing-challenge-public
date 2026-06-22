@@ -115,9 +115,49 @@ where $$r:\{0,1\}^n\mapsto\{0,1\}^{n-1}$$ is the arbitrary function computed by 
 
 Some functions require ancilla bits during computation. So while $$f$$ 
 
+## History?
+
+J's notes: https://hackmd.io/@gausslabs/ryOlMIWR0
+
+First, tried to choose at random. Hard to sample convex subcircuits. Expansion possible, but compression, correlations, heatmaps
+
+Making things incompressible was not easy. 
+
+Butterflies. $$AgB$$
+
+Symmetric ($$RgR^{-1}$$) and asymmetric (random each time) and compress. Surprisingly, minor differences between these. Incompressible, but hard to mix: doesn't really move state around.
+
+Rainbow tables. Build compressor.
+
+Shooting game. Instead of single-block replacements, extending collisions to create larger...
+
+Expand-compress loop.
+
+Inserting linear gates (SAMF) gave good heatmaps. Full shuffle of the wires, random NOTs. Push this through to the end -- and undo. In the middle, just remember what we did. Also tried partial linear changes: just touch a few wires at a time. Combination of long-term linear changes seems to be working best.
+
+
+Question: why only linear ... operations? Arbitrary linear could encode any matrix mult -- but then a huge blowup. Gate becomes a whole matrix, quadratic. Gate itself is non-linear. But swaps & flips don't have the blowup, and are easy to undo: maintain intermediate state easily.
+
+Issue: just linear + local mixing, not actually clear that you've obfuscated anything. Algebraic degree low. This is bad -- can recognize, open to cryptanalysis. Ideally, we want a cut between any two random places to look like a random circuit of that size.
+
+Idea: Virtual wire values - secret sharing - homomorphic gate evaluation. double the wires, say; each old wire is XOR-shared over two new wires. Maybe also three. Rerandomize, cycle the random values. "Heat bath of randomness." All wires are high degree of arbitrary others; secret shared value need not be.
+
+> In some sense, this is all that should be necessary... SAT solver.
+
+Very strong attack, and not clear how to defend: not a formal attack framework. SAT hardness. What gives it? Why do we (not) have SAT hardness?
+
+What is it that changed? Initially, SAT solver was unable to work. Used LLM to automatically attack.
+
+Feistelization. How to prevent backward operation. Initial idea. Get Nicholas's gadget.
+
+[Nicholas documentation](https://github.com/Local-Mixing/local_mixing/blob/shuffletests/docs/Mixing_Pieces_Documentation.md)
+
+
 ## Our Approach to Obfuscation
 
 [CCMR25] postulates that the following procedure gives an obfuscation scheme for reversible circuits.
+
+
 
 > Repeat $$\mathsf{poly}(n)$$ times:
 > 

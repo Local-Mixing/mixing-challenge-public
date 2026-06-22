@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Local Mixing Challenge
+title: Local Mixing Project
 author: authors
 email: hello@randomcircuits.io
 # description: the local mixing challenge for obfuscating reversible circuits

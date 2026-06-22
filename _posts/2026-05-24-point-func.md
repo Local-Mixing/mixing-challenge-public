@@ -98,13 +98,15 @@ To generate your own point functions, see the file `point_function.rs`.
 
 ## The challenges
 
+### 2a. Find the Preimage
+
 The obfuscated point function below computes the cycle $$({*}0\|k\ \ {*}1\|k)$$, for $$k\in\mathbb F_2^{128}$$. Find $$k$$. (The circuit has 132 wires, so you probably won't have enough time to brute-force all possible inputs.)
 
 ```
 # TODO
 ```
 
-### A Distinguishing Challenge
+### 2b. Build a Distinguisher
 
 If finding the point seems intractable, this challenge may be easier. Let $$f_k(x)$$ be a point function of key $$k$$, as defined above. Then, $$f_k(f_k(x))=x$$ (that is, the concatenation of the two circuits) equals the identity, while $$f_{k'}(f_k(x))$$ (the concatentation of two _different_ point functions) does not.
 
