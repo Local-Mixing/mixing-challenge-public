@@ -17,7 +17,7 @@ title: Local Mixing Project
 email: hello@randomcircuits.io
 # description: the local mixing challenge for obfuscating reversible circuits
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://randomcircuits.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://local-mixing.github.io/mixing-challenge-public/" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 markdown: kramdown
